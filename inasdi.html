@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stable Perlin Noise ASCII</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="noise.js"></script>
+
+    <style>
+                @keyframes wave {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(20px); }
+            50% { transform: translateX(-20px); }
+            75% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+
+<section id="main">
+
+    
+    <div class="adjust-tab ascii-tab-1">
+
+        <div>
+            <label for="saturate-value" class="slider-label">Saturation</label>
+            <span id="saturate-value" class="slider-value">0</span>
+            <button class="ascii-button-1" onclick="adjustValue('saturate', 0.1)">+</button>
+            <button class="ascii-button-1" onclick="adjustValue('saturate', -0.1)">-</button>
+        </div>
+    
+        <div>
+            <label for="hue-value" class="slider-label">Hue Rotation</label>
+            <span id="hue-value" class="slider-value">0</span>
+            <button class="ascii-button-1" onclick="adjustValue('hue', 3)">+</button>
+            <button class="ascii-button-1" onclick="adjustValue('hue', -3)">-</button>
+        </div>
+    </div>
+    
+
+    <div class="buttons-tab ascii-tab-4">
+
+        [ B U T T O N S ]
+
+        <button class="ascii-button-1 wave" >AESTHETIC</button>
+
+        <button class="ascii-button-2 wave" >AESTHETIC</button>
+
+        <button class="ascii-button-3 wave">AESTHETIC</button>
+
+        <button class="ascii-button-4 wave" >AESTHETIC</button>
+
+        <button class="ascii-button-5 wave" >AESTHETIC </button>
+
+        [ B U T T O N S ]
+
+
+    </div>
+
+
+    <pre id="ascii"></pre>
+
+    <div class="lined-pre wave title ">                                          
+ █████╗ ███████╗ ██████╗██╗██╗           ██╗███████╗
+██╔══██╗██╔════╝██╔════╝██║██║           ██║██╔════╝
+███████║███████╗██║     ██║██║           ██║███████╗
+██╔══██║╚════██║██║     ██║██║      ██   ██║╚════██║
+██║  ██║███████║╚██████╗██║██║  ██╗ ╚█████╔╝███████║
+╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝╚═╝  ╚═╝  ╚════╝ ╚══════╝
+    </div> 
+
+
+
+    <div class="cat-friend"></div>
+
+    <div class="button-flex">
+
+
+
+        <button class="ascii-button-1" >ABOUT US</button>
+
+        <button class="ascii-button-1">DOWNLOAD</button>
+
+
+
+    </div>
+
+</section>
+
+<section></section>
+
+
+
+
+<script src="script.js"></script>
+
+
+
+
+<script>
+    let saturate = 2.6;
+    let hue = 0;
+
+    function updateFilter() {
+        document.body.style.filter = `saturate(${saturate}) hue-rotate(${hue}deg)`;
+        document.getElementById('saturate-value').textContent = saturate.toFixed(1);
+        document.getElementById('hue-value').textContent = hue;
+    }
+
+    function adjustValue(type, amount) {
+        if (type === 'saturate') {
+            saturate = Math.min(10, Math.max(0, saturate + amount));
+        } else if (type === 'hue') {
+            hue = (hue + amount + 360) % 360;
+        }
+        updateFilter();
+    }
+
+    updateFilter();
+</script>
+
+
+
+<script>
+
+    const noise = new Noise(Math.random());
+    const chars = " .:-=+*#%";
+    const pre = document.getElementById("ascii");
+    
+    let time = 0;
+    const fixedWidth = 292; 
+    const fixedHeight = 292; 
+
+    function generateAscii() {
+        let output = "";
+
+        for (let y = 0; y < fixedHeight; y++) {
+            for (let x = 0; x < fixedWidth; x++) {
+                let value = noise.perlin3(y / 50, x / 9, time / 250);
+                value = (value + 1) / 2;
+                output += chars[Math.floor(value * (chars.length - 1))];
+            }
+            output += "\n";
+        }
+
+        pre.textContent = output;
+        time++;
+        requestAnimationFrame(generateAscii);
+    }
+
+    generateAscii(); 
+    
+
+</script>
+
+
+
+
+</body>
+</html>

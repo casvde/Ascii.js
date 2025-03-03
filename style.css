@@ -11,7 +11,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: monospace
+    font-family:monospace;
 }
 
 
@@ -46,7 +46,6 @@ body {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 
-    font-family: monospace;
     background: #0c0c23;
     color: rgb(31, 34, 55);
     z-index: -10;
@@ -79,7 +78,7 @@ body {
 
 }
 
-.cat-friend{
+.cat-friends{
 
     color: var(--text-color);
     text-shadow: var(--displace);
@@ -111,6 +110,25 @@ body {
     border: solid var(--text-color) 1px ; 
     box-shadow: var(--displace-big);
 }
+
+
+
+@keyframes wave {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(20px); }
+    50% { transform: translateX(-20px); }
+    75% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+}
+
+
+.bar-container{
+    color: var(--text-color);
+    text-shadow: var(--displace);
+
+}
+
+
 
 
 

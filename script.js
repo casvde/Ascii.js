@@ -36,8 +36,6 @@ const cat_friends = `
 
 `;
 
-
-
 const buttonGroups = [
     { selector: '.ascii-button-1', style: border_style_1 },
     { selector: '.ascii-button-2', style: border_style_2 },
@@ -46,22 +44,9 @@ const buttonGroups = [
     { selector: '.ascii-button-5', style: border_style_5 }
 ];
 
-const catAssci_1 = document.querySelectorAll('.cat-friend');
-
-
+insertAscii(cat_friends, ".cat-friends");
 
 const prelines = document.querySelectorAll('.lined-pre');
-
-
-
-prelines.forEach(element => {
-    const content = element.textContent;
-    const lines = content.split('\n');
-    const wrappedLines = lines.map(line => `<pre>${line}</pre>`).join('');
-    element.innerHTML = wrappedLines;
-});
-
-
 
 
 
@@ -107,10 +92,14 @@ function addAscii(classes, asciiArt) {
 });
 }
 
+function insertAscii(asciiArt, classname) {
+    const elements = document.querySelectorAll(classname);
+    elements.forEach(element => {
+        element.style.whiteSpace = 'pre';
+        element.textContent = asciiArt;
+    });
 
-
-
-
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     const titleElements = document.querySelectorAll(".wave");
@@ -143,24 +132,53 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-
-
-
-
-
-
 buttonGroups.forEach(({ selector, style }) => {
     applyAsciiBoxes(document.querySelectorAll(selector), style);
 });
 
-addAscii(catAssci_1, cat_friends)
+prelines.forEach(element => {
+    const content = element.textContent;
+    const lines = content.split('\n');
+    const wrappedLines = lines.map(line => `<pre>${line}</pre>`).join('');
+    element.innerHTML = wrappedLines;
+});
 
 
 
 
 
 
+function startBarAnimation(barStyle, speed, barLoop = false, barSliceStart = false, barSliceEnd = false, barCount = 1) {
+    if (barLoop) {
+        barStyle = barStyle + [...barStyle].reverse().join("");
+    }
+    
+    if (barSliceEnd) {
+        const middleIndex = Math.floor(barStyle.length / 2);
+        barStyle = barStyle.slice(0, middleIndex) + barStyle.slice(middleIndex + 1);
+    }
 
+    if (barSliceStart) {
+        barStyle = barStyle.slice(0, -1);
+    }
 
+    let currentIndex = 0;
+    const barArray = barStyle.split('');
+    const container = document.querySelector('.bar-container');
 
+    
+    function updateBars() {
+        let displayBars = '';
+        for (let i = 0; i < barCount; i++) {
+            const barIndex = (currentIndex + i) % barArray.length;
+            displayBars += barArray[barIndex] + ' ';
+        }
+        container.textContent = displayBars.trim();
+        currentIndex = (currentIndex + 1) % barArray.length;
+    }
+    
+    setInterval(updateBars, speed);
+}
+
+const bar = `▂▃▅▆▇`;
+startBarAnimation(bar, 100, true, false, false, 5);

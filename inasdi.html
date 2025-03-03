@@ -6,17 +6,9 @@
     <title>Stable Perlin Noise ASCII</title>
     <link rel="stylesheet" href="style.css">
 
+
     <script src="noise.js"></script>
 
-    <style>
-                @keyframes wave {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(20px); }
-            50% { transform: translateX(-20px); }
-            75% { transform: translateX(10px); }
-            100% { transform: translateX(0); }
-        }
-    </style>
 </head>
 <body>
 
@@ -29,14 +21,14 @@
             <label for="saturate-value" class="slider-label">Saturation</label>
             <span id="saturate-value" class="slider-value">0</span>
             <button class="ascii-button-1" onclick="adjustValue('saturate', 0.1)">+</button>
-            <button class="ascii-button-1" onclick="adjustValue('saturate', -0.1)">-</button>
+            <button class="ascii-button-2" onclick="adjustValue('saturate', -0.1)">-</button>
         </div>
     
         <div>
             <label for="hue-value" class="slider-label">Hue Rotation</label>
             <span id="hue-value" class="slider-value">0</span>
             <button class="ascii-button-1" onclick="adjustValue('hue', 3)">+</button>
-            <button class="ascii-button-1" onclick="adjustValue('hue', -3)">-</button>
+            <button class="ascii-button-2" onclick="adjustValue('hue', -3)">-</button>
         </div>
     </div>
     
@@ -45,15 +37,15 @@
 
         [ B U T T O N S ]
 
-        <button class="ascii-button-1 wave" >AESTHETIC</button>
+        <button class="ascii-button-1" >AESTHETIC</button>
 
-        <button class="ascii-button-2 wave" >AESTHETIC</button>
+        <button class="ascii-button-2" >AESTHETIC</button>
 
-        <button class="ascii-button-3 wave">AESTHETIC</button>
+        <button class="ascii-button-3">AESTHETIC</button>
 
-        <button class="ascii-button-4 wave" >AESTHETIC</button>
+        <button class="ascii-button-4" >AESTHETIC</button>
 
-        <button class="ascii-button-5 wave" >AESTHETIC </button>
+        <button class="ascii-button-5" >AESTHETIC </button>
 
         [ B U T T O N S ]
 
@@ -74,19 +66,17 @@
 
 
 
-    <div class="cat-friend"></div>
+    <div class="cat-friends"></div>
+
 
     <div class="button-flex">
-
-
-
         <button class="ascii-button-1" >ABOUT US</button>
 
         <button class="ascii-button-1">DOWNLOAD</button>
-
-
-
     </div>
+
+    <div class="bar-container"></div>
+
 
 </section>
 

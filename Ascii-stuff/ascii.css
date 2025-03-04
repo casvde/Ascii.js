@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'Terminus';
+    src: url('./fonts/TerminusTTF-4.49.3.woff') format('woff'), 
+         url('./fonts/TerminusTTF-4.49.3.ttf') format('truetype'); 
+}  
+
+
+* {
+    font-family:monospace;
+}
+
+
+.ascii-button{
+    background: none;
+    border: none;
+}
+
+
+.cat-friends{
+    line-height: 16px;
+    letter-spacing: -2px;
+}
+
+.lined-pre pre{
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+
+
+.ascii-tab-1{
+    border: double var(--text-color) 4px ; 
+    box-shadow: var(--displace-big);
+}
+
+.ascii-tab-2{
+    border: dashed var(--text-color) 2px ; 
+    box-shadow: var(--displace-big);
+}
+
+.ascii-tab-3{
+    border: dotted var(--text-color) 3px ; 
+    box-shadow: var(--displace-big);
+}
+
+.ascii-tab-4{
+    border: solid var(--text-color) 1px ; 
+    box-shadow: var(--displace-big);
+}
+
+
+
+
+
+.unicode-fix{
+    font-family: 'Terminus';
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: -1px;
+}
+
+
+
+
+
+
+@keyframes wave {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(20px); }
+    50% { transform: translateX(-20px); }
+    75% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+}
+
+
+
+
+
+
+
+
+

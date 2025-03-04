@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stable Perlin Noise ASCII</title>
+    <link rel="stylesheet" href="./Ascii-stuff/ascii.css">
+    <link rel="stylesheet" href="style.css">
+
+
+    <script src="noise.js"></script>
+
+</head>
+<body>
+
+<pre id="ascii"></pre>
+
+<section id="main">
+
+
+
+    <div class="lined-pre wave title ">                                          
+ █████╗ ███████╗ ██████╗██╗██╗           ██╗███████╗
+██╔══██╗██╔════╝██╔════╝██║██║           ██║██╔════╝
+███████║███████╗██║     ██║██║           ██║███████╗
+██╔══██║╚════██║██║     ██║██║      ██   ██║╚════██║
+██║  ██║███████║╚██████╗██║██║  ██╗ ╚█████╔╝███████║
+╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝╚═╝  ╚═╝  ╚════╝ ╚══════╝
+    </div> 
+
+
+
+    <div class="cat-friends"></div>
+
+
+    <div class="button-flex">
+        <button class="ascii-button-1" >ABOUT US</button>
+
+        <button class="ascii-button-1">DOWNLOAD</button>
+    </div>
+
+    <h3>↓</h>
+    
+
+</section>
+
+<h2>[ E X A M P L E S ]</h2>
+
+<div class="button-flex">
+    <button id="btn-light" class="ascii-button-2">Light Mode</button>
+    <button id="btn-plain"  class="ascii-button-2">Plain Mode</button>
+    <button id="btn-retro"  class="ascii-button-2">Retro Mode</button>
+</div>
+
+<section id="stuff">
+
+    <div class="ascii-tab-4 buttons-tab">
+
+        [ B U T T O N S ]
+
+        <button class="ascii-button-1"> Hello World!</button>
+
+        <button class="ascii-button-2"> Hello World!</button>
+
+        <button class="ascii-button-3"> Hello World!</button>
+
+        <button class="ascii-button-4" >Hello World!</button>
+
+        <button class="ascii-button-5" >Hello World! </button>
+
+    </div>
+
+
+
+
+    <div class="ascii-tab-1 loops-tab">        
+        
+        [ L O A D   L O O P S ]
+
+
+        <div class="load-loop-1"></div>
+        <div>[ <span class="load-loop-2"></span> ]</div> 
+        <div class="load-loop-3"></div>
+        <div class="load-loop-4"></div>
+        <div class="load-loop-5"></div>
+        <div class="load-loop-6"></div>
+        <div class="load-loop-7"></div>
+    
+    </div>
+
+    <div class="ascii-tab-4 loader-tab">
+
+        [ L O A D I N G B A R S ]
+
+    </div>
+
+    
+</section>
+
+
+
+<script src="./Ascii-stuff/ascii.js"></script>
+
+<script>
+    const noise = new Noise(Math.random());
+    const chars = " .:-=+*#%";
+    const pre = document.getElementById("ascii");
+
+    let time = 0;
+    const fixedWidth = 260 ;
+    const fixedHeight = 260 ;
+    const charsLength = chars.length - 1;
+
+    function generateAscii() {
+        let output = new Array(fixedHeight * (fixedWidth + 1)); 
+
+        let index = 0;
+        for (let y = 0; y < fixedHeight; y++) {
+            for (let x = 0; x < fixedWidth; x++) {
+                let value = noise.perlin3(y / 80, x / 8, time / 250);
+                value = (value + 1) / 2; 
+                output[index++] = chars[Math.floor(value * charsLength)];
+            }
+            output[index++] = "\n"; 
+        }
+
+        pre.textContent = output.join("");
+        time++;
+        requestAnimationFrame(generateAscii);
+    }
+
+    generateAscii();
+</script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("btn-light").addEventListener("click", function () {
+        changeRootStyles({
+            "--background-text": "rgb(255, 255, 255)",
+            "--background-color": "rgb(255, 255, 255)",
+            "--text-color": "rgb(0, 0, 0)",
+            "--displace": "1.32px 0 0.32px #ea36ae80, -1.32px 0 0.32px #75fa6960",
+            "--displace-small": "0.6px 0 0.6px #ea36ae, -0.6px 0 0.6px #75fa69",
+            "--displace-big": "1.62px 0px 0.12px #ea36ae80, -1.62px 0px 0.12px #75fa6960",
+            "--on": "block"
+        });
+    });
+
+    document.getElementById("btn-plain").addEventListener("click", function () {
+        changeRootStyles({
+            "--background-text": "rgb(255, 255, 255)",
+            "--background-color": "rgb(255, 255, 255)",
+            "--text-color": "rgb(0, 0, 0)",
+            "--displace": "none",
+            "--displace-small": "none",
+            "--displace-big": "none",
+            "--on": "none"
+        });
+    });
+
+    document.getElementById("btn-retro").addEventListener("click", function () {
+        changeRootStyles({
+            "--background-text": "rgb(31, 34, 55)",
+            "--background-color": "rgb(12, 12, 35)",
+            "--text-color": "rgb(129, 132, 158)",
+            "--displace": "1.32px 0 1.32px #ea36ae80, -1.32px 0 1.32px #75fa6960",
+            "--displace-small": "0.06px 0 0.06px #ea36ae80, -0.125px 0 0.06px #75fa6960",
+            "--displace-big": "1.62px 0px 1.12px #ea36ae80, -1.62px 0px 1.12px #75fa6960",
+            "--on": "block"
+        });
+    });
+
+    function changeRootStyles(styles) {
+        const root = document.documentElement;
+        Object.keys(styles).forEach(key => {
+            root.style.setProperty(key, styles[key]);
+        });
+    }
+});
+
+
+</script>
+
+
+
+</body>
+</html>
